@@ -8,6 +8,8 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "director": "^1.2.8",
+    "firebase": "^3.6.1",
     "vue": "^2.0.1"
   },
   "devDependencies": {
