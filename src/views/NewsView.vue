@@ -29,7 +29,9 @@ module.exports = {
     'Item': Item
   },
   watch: {
-    'params.page': 'update' // TODO: Cannot use `this.update` here, why?
+    'params.page': function(){
+      this.update(); // This works
+    }
   },
   methods: {
     update: function(){
