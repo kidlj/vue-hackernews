@@ -2,7 +2,7 @@
   <div class="news-view">
     <!-- item list -->
     <ul>
-      <item v-for="(item, index) in items" :item="item" :index="index" :page="params.page"></item>
+      <item v-for="(item, index) in items" :item="item" :index="index" :page="displayPage"></item>
     </ul>
     <!-- navigation -->
     <div class="nav" v-show="items.length > 0">
@@ -21,7 +21,8 @@ module.exports = {
   props: ['params'],
   data: function(){
     return {
-      items: []
+      items: [],
+      displayPage: 1 // bind sub-component props to data instance, not props got from parent component
     };
   },
   components: {
@@ -34,6 +35,7 @@ module.exports = {
     update: function(){
       store.fetchItemsByPage(this.params.page, function(items){
         this.items = items;
+        this.displayPage = this.params.page;
       }.bind(this));
     }
   },
