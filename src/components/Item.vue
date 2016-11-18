@@ -12,7 +12,7 @@
       </span>
       {{ item.time }}
       <span v-show="showInfo" class="comments-link">
-        | <a href="'#/item/' + item.id">comments</a>
+        | <a :href="'#/item/' + item.id">comments</a>
       </span>
     </p>
   </div>
