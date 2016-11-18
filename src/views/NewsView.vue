@@ -21,9 +21,6 @@ module.exports = {
   props: ['params'],
   data: function(){
     return {
-      params: {
-        page: 1
-      },
       items: []
     };
   },
@@ -31,7 +28,7 @@ module.exports = {
     'Item': Item
   },
   watch: {
-    'params.page': 'update'
+    'params.page': 'update' // TODO: Cannot use `this.update` here, why?
   },
   methods: {
     update: function(){
@@ -41,7 +38,6 @@ module.exports = {
     }
   },
   mounted: function(){
-    this.update();
     store.on('update', this.update);
   },
   destroyed: function(){
