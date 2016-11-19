@@ -18,7 +18,7 @@
 <script>
 var NewsView = require('./views/NewsView.vue');
 var ItemView = require('./views/ItemView.vue');
-// var UserView = require('./views/UserView');
+var UserView = require('./views/UserView.vue');
 
 module.exports = {
   el: '#app',
@@ -33,7 +33,7 @@ module.exports = {
   components: {
     'NewsView': NewsView,
     'ItemView': ItemView,
-    // 'UserView': UserView
+    'UserView': UserView
   }
 };
 </script>
