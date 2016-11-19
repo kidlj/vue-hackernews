@@ -1,11 +1,22 @@
 <template>
-  <div class="item-view">
-
+  <div class="item-view" v-show="item">
+    <item :item="item"></item>
+    <ul class="poll-options" v-if="pollOpts">
+      <li v-for="option in pollOpts">
+        <p>{{ option.text }}</p>
+        <p class="subtext">{{ option.score }} points</p>
+      </li>
+    </ul>
+    <ul class="comments" v-if="comments">
+      <comment v-for="comment in comments" :comment="comment"></comment>
+    </ul>
+    <p v-show="!comments.length">No comments yet.</p>
   </div>
 </template>
 
 <script>
-  var Item = require('../components/Item.vuew');
+  var Item = require('../components/Item.vue');
+  var Comment = require('../components/Comment.vue');
   var store = require('../store');
 
   module.exports = {
@@ -13,17 +24,20 @@
     props: ['params'],
     data: function(){
       return {
-        item: null,
+        item: null, // or {} better?
         comments: [],
-        pollOpts: []
+        pollOpts: null
       }
     },
     watch: {
-      'params.userId': 'update'
+      'params.itemId': 'update'
+    },
+    mounted: function(){
+      this.update();
     },
     methods: {
       update: function(){
-        store.fetchItem(this.params.userId, function(item){
+        store.fetchItem(this.params.itemId, function(item){
           this.item = item;
           this.fetchComments();
           if (item.type === 'poll') {
@@ -45,7 +59,8 @@
       }
     },
     components: {
-      'Item': Item
+      'Item': Item,
+      'Comment': Comment
     }
   }
 </script>
