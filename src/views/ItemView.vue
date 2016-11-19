@@ -68,7 +68,13 @@
 <style>
 .item-view
   .item
-    .index, .comments-link {
+    .index {
+      display: none;
+    }
+
+.item-view
+  .item
+    .comments-link {
       display: none;
     }
 </style>
