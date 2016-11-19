@@ -66,6 +66,11 @@
 </script>
 
 <style>
+.item-view
+  .item
+    .index, .comments-link {
+      display: none;
+    }
 </style>
 
 
