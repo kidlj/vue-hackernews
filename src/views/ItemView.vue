@@ -24,7 +24,7 @@
     props: ['params'],
     data: function(){
       return {
-        item: null, // or {} better?
+        item: {},
         comments: [],
         pollOpts: null
       }
