@@ -6,6 +6,7 @@ var EventEmitter = require('events').EventEmitter;
 var store = module.exports = new EventEmitter();
 var storiesPerPage = 30;
 var cachedStoryIds = [];
+var cachedStories = [];
 
 api.child('topstories').on('value', function(snapshot){
     cachedStoryIds = snapshot.val();
@@ -19,9 +20,15 @@ store.fetchItem = function(id, cb){
 };
 
 store.fetchUser = function(id, cb){
-    api.child('user/' + id).once('value', function(snapshot){
-        cb(snapshot.val());
-    });
+    if (cachedStories[id]) {
+        cb(cachedStories[id]);
+    } else {
+        api.child('user/' + id).once('value', function(snapshot){
+            var story = snapshot.val();
+            cachedStories[id] = story;
+            cb(story);
+        });
+    }
 };
 
 store.fetchItems = function(ids, cb){
