@@ -24,7 +24,7 @@
     props: ['params'],
     data: function(){
       return {
-        item: {},
+        item: {}, // initialize item to an object to avoid warnings. (upstream 4b92c0bf13a)
         comments: [],
         pollOpts: null
       }
