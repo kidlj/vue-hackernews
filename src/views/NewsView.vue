@@ -42,6 +42,7 @@ module.exports = {
     }
   },
   mounted: function(){
+    this.update(); // This will speed up loading when using browser back
     store.on('update', this.update);
   },
   destroyed: function(){
