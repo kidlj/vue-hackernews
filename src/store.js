@@ -26,15 +26,9 @@ store.fetchItem = function(id, cb){
 };
 
 store.fetchUser = function(id, cb){
-    if (cachedStories[id]) {
-        cb(cachedStories[id]);
-    } else {
-        api.child('user/' + id).once('value', function(snapshot){
-            var story = snapshot.val();
-            cachedStories[id] = story;
-            cb(story);
-        });
-    }
+    api.child('user/' + id).once('value', function(snapshot){
+        cb(snapshot.val());
+    });
 };
 
 store.fetchItems = function(ids, cb){
